@@ -29,5 +29,5 @@ HTML:
 
 Javascript:
 ```
-$scope.vectic = new vectic({id='vectic1',target:$('interfaceID')});
+$scope.vectic = new vectic({id='vectic1',target:$('#interfaceID')});
 ```
