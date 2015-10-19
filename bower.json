@@ -1,0 +1,22 @@
+{
+  "name": "vectic-angular",
+  "version": "0.0.0",
+  "homepage": "https://github.com/brush-tail/vectic-angular",
+  "authors": [
+    "Zeus3rd <zeus3rd@gmail.com>"
+  ],
+  "description": "Angular wrapper for vectic plugin",
+  "main": "index.min.js",
+  "moduleType": [],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vectic": "https://github.com/brush-tail/vectic.git"
+  }
+}
