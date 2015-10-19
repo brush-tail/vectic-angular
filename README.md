@@ -16,5 +16,6 @@ angular.module('myApp', [
 ```
 
 ```
-<vectic id="{{vecticID}}"></vectic>
+<vectic id="vecticID"></vectic>
 ```
+Where vecticID is a value stored on the parent $scope. (ie $scope.vecticID = 'vectic1';)
