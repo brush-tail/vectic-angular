@@ -22,7 +22,8 @@ angular.module('vectic')
     template: '<div></div>',
     restrict: 'E',
     scope: {
-      id: '=',
+      id: '=?',
+      templateId: '=?',
     },
     link: function($scope, $element) {
       // Check for vectic library
@@ -31,6 +32,7 @@ angular.module('vectic')
       // Initialize if not done already
       $scope.vectic = new vectic({
         vecticID: $scope.id,
+        templateID: $scope.templateId,
         target: $($element),
       });
       $scope.vectic.init();
