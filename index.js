@@ -24,16 +24,41 @@ angular.module('vectic')
     scope: {
       id: '=?',
       templateId: '=?',
+
+      moveRoot: '=?',
+      clickRoot: '=?',
+      enterRoot: '=?',
+      leaveRoot: '=?',
+      scrollRoot: '=?',
+
+      moveObject: '=?',
+      clickObject: '=?',
+      enterObject: '=?',
+      leaveObject: '=?',
+      scrollObject: '=?',
     },
     link: function($scope, $element) {
       // Check for vectic library
       if(!vectic) { return console.error('vectic-angular directive could not find vectic library dependancy'); }
 
-      // Initialize if not done already
+      // Create vectic controller
       $scope.vectic = new vectic({
         vecticID: $scope.id,
         templateID: $scope.templateId,
         target: $($element),
+
+        // Mouse interactions
+        moveRoot: $scope.moveRoot,
+        clickRoot: $scope.clickRoot,
+        enterRoot: $scope.enterRoot,
+        leaveRoot: $scope.leaveRoot,
+        scrollRoot: $scope.scrollRoot,
+
+        moveObject: $scope.moveObject,
+        clickObject: $scope.clickObject,
+        enterObject: $scope.enterObject,
+        leaveObject: $scope.leaveObject,
+        scrollObject: $scope.scrollObject,
       });
       $scope.vectic.init();
     },
