@@ -36,6 +36,8 @@ angular.module('vectic')
       enterObject: '=?',
       leaveObject: '=?',
       scrollObject: '=?',
+
+      highlightSelected: '=?',
     },
     link: function($scope, $element) {
       // Check for vectic library
@@ -60,6 +62,12 @@ angular.module('vectic')
         leaveObject: $scope.leaveObject,
         scrollObject: $scope.scrollObject,
       });
+
+      $scope.$watch('highlightSelected', function(data) {
+        $scope.vectic.setHighlight(data);
+        $scope.$apply();
+      });
+
       $scope.vectic.init();
     },
   };
