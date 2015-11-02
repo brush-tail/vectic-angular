@@ -50,17 +50,47 @@ angular.module('vectic')
         target: $($element),
 
         // Mouse interactions
-        moveRoot: $scope.moveRoot,
-        clickRoot: $scope.clickRoot,
-        enterRoot: $scope.enterRoot,
-        leaveRoot: $scope.leaveRoot,
-        scrollRoot: $scope.scrollRoot,
+        moveRoot: function(event) {
+          $scope.moveRoot(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        clickRoot: function(event) {
+          $scope.clickRoot(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        enterRoot: function(event) {
+          $scope.enterRoot(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        leaveRoot: function(event) {
+          $scope.leaveRoot(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        scrollRoot: function(event) {
+          $scope.scrollRoot(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
 
-        moveObject: $scope.moveObject,
-        clickObject: $scope.clickObject,
-        enterObject: $scope.enterObject,
-        leaveObject: $scope.leaveObject,
-        scrollObject: $scope.scrollObject,
+        moveObject: function(event) {
+          $scope.moveObject(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        clickObject: function(event) {
+          $scope.clickObject(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        enterObject: function(event) {
+          $scope.enterObject(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        leaveObject: function(event) {
+          $scope.leaveObject(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        scrollObject: function(event) {
+          $scope.scrollObject(event);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
       });
 
       $scope.$watch('highlightSelected', function(data) {
