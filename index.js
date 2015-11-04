@@ -36,8 +36,6 @@ angular.module('vectic')
       enterObject: '=?',
       leaveObject: '=?',
       scrollObject: '=?',
-
-      highlightSelected: '=?',
     },
     link: function($scope, $element) {
       // Check for vectic library
@@ -50,45 +48,45 @@ angular.module('vectic')
         target: $($element),
 
         // Mouse interactions
-        moveRoot: function(event, rootID) {
-          $scope.moveRoot(event, rootID);
+        moveRoot: function(event, dom, rootID) {
+          $scope.moveRoot(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        clickRoot: function(event, rootID) {
-          $scope.clickRoot(event, rootID);
+        clickRoot: function(event, dom, rootID) {
+          $scope.clickRoot(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        enterRoot: function(event, rootID) {
-          $scope.enterRoot(event, rootID);
+        enterRoot: function(event, dom, rootID) {
+          $scope.enterRoot(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        leaveRoot: function(event, rootID) {
-          $scope.leaveRoot(event, rootID);
+        leaveRoot: function(event, dom, rootID) {
+          $scope.leaveRoot(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        scrollRoot: function(event, rootID) {
-          $scope.scrollRoot(event, rootID);
+        scrollRoot: function(event, dom, rootID) {
+          $scope.scrollRoot(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
 
-        moveObject: function(event, rootID) {
-          $scope.moveObject(event, rootID);
+        moveObject: function(event, dom, rootID) {
+          $scope.moveObject(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        clickObject: function(event, rootID) {
-          $scope.clickObject(event, rootID);
+        clickObject: function(event, dom, rootID) {
+          $scope.clickObject(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        enterObject: function(event, rootID) {
-          $scope.enterObject(event, rootID);
+        enterObject: function(event, dom, rootID) {
+          $scope.enterObject(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        leaveObject: function(event, rootID) {
-          $scope.leaveObject(event, rootID);
+        leaveObject: function(event, dom, rootID) {
+          $scope.leaveObject(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        scrollObject: function(event, rootID) {
-          $scope.scrollObject(event, rootID);
+        scrollObject: function(event, dom, rootID) {
+          $scope.scrollObject(event, dom, rootID);
           if(!$scope.$$phase) {$scope.$apply();}
         },
       });
