@@ -17,7 +17,7 @@ angular.module('vectic')
 
     return _vectic;
 })
-.directive('vectic', function() {
+.directive('vectic', ['$firebaseArray', function($firebaseArray) {
   return {
     template: '<div></div>',
     restrict: 'E',
@@ -36,6 +36,16 @@ angular.module('vectic')
       enterObject: '=?',
       leaveObject: '=?',
       scrollObject: '=?',
+
+      returnObjectsRef: '=?',
+      returnTemplatesRef: '=?',
+      returnPalettesRef: '=?',
+
+      fixSize: '=?',
+      width: '=?',
+      height: '=?',
+      zoom: '=?',
+      aspectRatio: '=?',
     },
     link: function($scope, $element) {
       // Check for vectic library
@@ -48,50 +58,72 @@ angular.module('vectic')
         target: $($element),
 
         // Mouse interactions
-        moveRoot: function(event, dom, rootID) {
-          $scope.moveRoot(event, dom, rootID);
+        moveRoot: function(params) {
+          $scope.moveRoot(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        clickRoot: function(event, dom, rootID) {
-          $scope.clickRoot(event, dom, rootID);
+        clickRoot: function(params) {
+          $scope.clickRoot(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        enterRoot: function(event, dom, rootID) {
-          $scope.enterRoot(event, dom, rootID);
+        enterRoot: function(params) {
+          $scope.enterRoot(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        leaveRoot: function(event, dom, rootID) {
-          $scope.leaveRoot(event, dom, rootID);
+        leaveRoot: function(params) {
+          $scope.leaveRoot(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        scrollRoot: function(event, dom, rootID) {
-          $scope.scrollRoot(event, dom, rootID);
+        scrollRoot: function(params) {
+          $scope.scrollRoot(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
 
-        moveObject: function(event, dom, rootID) {
-          $scope.moveObject(event, dom, rootID);
+        moveObject: function(params) {
+          $scope.moveObject(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        clickObject: function(event, dom, rootID) {
-          $scope.clickObject(event, dom, rootID);
+        clickObject: function(params) {
+          $scope.clickObject(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        enterObject: function(event, dom, rootID) {
-          $scope.enterObject(event, dom, rootID);
+        enterObject: function(params) {
+          $scope.enterObject(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        leaveObject: function(event, dom, rootID) {
-          $scope.leaveObject(event, dom, rootID);
+        leaveObject: function(params) {
+          $scope.leaveObject(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
-        scrollObject: function(event, dom, rootID) {
-          $scope.scrollObject(event, dom, rootID);
+        scrollObject: function(params) {
+          $scope.scrollObject(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
       });
 
       $scope.vectic.init();
+
+      if($scope.returnObjectsRef) {
+        var ref = $scope.vectic.getObjectsRef();
+        if(!ref) {return console.error('unable to get Objects ref');}
+        $scope.returnObjectsRef($firebaseArray(ref));
+      }
+      if($scope.returnTemplatesRef) {
+        var ref = $scope.vectic.getTemplatesRef();
+        if(!ref) {return console.error('unable to get Templates ref');}
+        $scope.returnTemplatesRef($firebaseArray(ref));
+      }
+      if($scope.returnPalettesRef) {
+        var ref = $scope.vectic.getPalettesRef();
+        if(!ref) {return console.error('unable to get Palettes ref');}
+        $scope.returnPalettesRef($firebaseArray(ref));
+      }
+
+      $scope.$watch('fixSize', $scope.vectic.fixSize);
+      $scope.$watch('width', $scope.vectic.setWidth);
+      $scope.$watch('height', $scope.vectic.setHeight);
+      $scope.$watch('zoom', $scope.vectic.setZoom);
+      $scope.$watch('aspectRatio', $scope.vectic.aspectRatio);
     },
   };
-});
+}]);

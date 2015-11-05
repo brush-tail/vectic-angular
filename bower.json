@@ -6,7 +6,7 @@
     "Zeus3rd <zeus3rd@gmail.com>"
   ],
   "description": "Angular wrapper for vectic plugin",
-  "main": "index.min.js",
+  "main": "index.js",
   "moduleType": [],
   "license": "Apache-2.0",
   "ignore": [
@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "vectic": "https://github.com/brush-tail/vectic.git"
+    "vectic": "https://github.com/brush-tail/vectic.git",
+    "angularfire": "~1.1.3"
   }
 }
