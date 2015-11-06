@@ -6,7 +6,7 @@
     "Zeus3rd <zeus3rd@gmail.com>"
   ],
   "description": "Angular wrapper for vectic plugin",
-  "main": "index.js",
+  "main": "index.min.js",
   "moduleType": [],
   "license": "Apache-2.0",
   "ignore": [
