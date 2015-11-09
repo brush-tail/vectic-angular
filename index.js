@@ -30,12 +30,16 @@ angular.module('vectic')
       enterRoot: '=?',
       leaveRoot: '=?',
       scrollRoot: '=?',
+      mouseupRoot: '=?',
+      mousedownRoot: '=?',
 
       moveObject: '=?',
       clickObject: '=?',
       enterObject: '=?',
       leaveObject: '=?',
       scrollObject: '=?',
+      mouseupObject: '=?',
+      mousedownObject: '=?',
 
       returnObjectsRef: '=?',
       returnTemplatesRef: '=?',
@@ -78,6 +82,14 @@ angular.module('vectic')
           $scope.scrollRoot(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
+        mouseupRoot: function(params) {
+          $scope.mouseupRoot(params);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        mousedownRoot: function(params) {
+          $scope.mousedownRoot(params);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
 
         moveObject: function(params) {
           $scope.moveObject(params);
@@ -97,6 +109,14 @@ angular.module('vectic')
         },
         scrollObject: function(params) {
           $scope.scrollObject(params);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        mouseupObject: function(params) {
+          $scope.mouseupObject(params);
+          if(!$scope.$$phase) {$scope.$apply();}
+        },
+        mousedownObject: function(params) {
+          $scope.mousedownObject(params);
           if(!$scope.$$phase) {$scope.$apply();}
         },
       });
