@@ -17,13 +17,13 @@ angular.module('vectic')
 
     return _vectic;
 })
-.directive('vectic', ['$firebaseArray', function($firebaseArray) {
+.directive('vectic', ['$firebaseArray', 'vectic', function($firebaseArray, vectic) {
   return {
     template: '<div></div>',
     restrict: 'E',
     scope: {
       id: '=?',
-      templateId: '=?',
+      type: '=?',
 
       moveRoot: '=?',
       clickRoot: '=?',
@@ -57,8 +57,8 @@ angular.module('vectic')
 
       // Create vectic controller
       $scope.vectic = new vectic({
-        vecticID: $scope.id,
-        templateID: $scope.templateId,
+        id: $scope.id,
+        type: $scope.type,
         target: $($element),
 
         // Mouse interactions
