@@ -121,7 +121,8 @@ angular.module('vectic')
         },
       });
 
-      $scope.vectic.init();
+      // Obsolete
+      // $scope.vectic.init();
 
       if($scope.returnObjectsRef) {
         var ref = $scope.vectic.getObjectsRef();
