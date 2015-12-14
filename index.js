@@ -24,6 +24,7 @@ angular.module('vectic')
     scope: {
       id: '=?',
       type: '=?',
+      url: '=?',
 
       moveRoot: '=?',
       clickRoot: '=?',
@@ -54,15 +55,19 @@ angular.module('vectic')
     link: function($scope, $element) {
       // Check for vectic library
       if(!vectic) { return console.error('vectic-angular directive could not find vectic library dependancy'); }
+      if(!FirebaseCon) {
+        vectic.connect($scope.url);
+      }
 
       if($scope.type == 'edit') {
+        console.log('vectic-angular: Edit Rendering')
         $scope.vectic = new vecticEdit({
           id: $scope.id,
           target: $($element),
         });
       }
       else {
-
+        console.log('vectic-angular: Rendering')
         // Create vectic controller
         $scope.vectic = new vectic({
           id: $scope.id,
@@ -159,7 +164,3 @@ angular.module('vectic')
     },
   };
 }]);
-
-if(vectic) {
-  vectic.connect();
-}
