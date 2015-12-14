@@ -159,3 +159,7 @@ angular.module('vectic')
     },
   };
 }]);
+
+if(vectic) {
+  vectic.connect();
+}
