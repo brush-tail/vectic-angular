@@ -55,71 +55,82 @@ angular.module('vectic')
       // Check for vectic library
       if(!vectic) { return console.error('vectic-angular directive could not find vectic library dependancy'); }
 
-      // Create vectic controller
-      $scope.vectic = new vectic({
-        id: $scope.id,
-        type: $scope.type,
-        target: $($element),
+      if($scope.type == 'edit') {
+        $scope.vectic = new vecticEdit({
+          id: $scope.id,
+          target: $($element),
+        });
+      }
+      else {
 
-        // Mouse interactions
-        moveRoot: function(params) {
-          $scope.moveRoot(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        clickRoot: function(params) {
-          $scope.clickRoot(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        enterRoot: function(params) {
-          $scope.enterRoot(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        leaveRoot: function(params) {
-          $scope.leaveRoot(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        scrollRoot: function(params) {
-          $scope.scrollRoot(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        mouseupRoot: function(params) {
-          $scope.mouseupRoot(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        mousedownRoot: function(params) {
-          $scope.mousedownRoot(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
+        // Create vectic controller
+        $scope.vectic = new vectic({
+          id: $scope.id,
+          // type: $scope.type,
+          target: $($element),
 
-        moveObject: function(params) {
-          $scope.moveObject(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        clickObject: function(params) {
-          $scope.clickObject(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        enterObject: function(params) {
-          $scope.enterObject(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        leaveObject: function(params) {
-          $scope.leaveObject(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        scrollObject: function(params) {
-          $scope.scrollObject(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        mouseupObject: function(params) {
-          $scope.mouseupObject(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-        mousedownObject: function(params) {
-          $scope.mousedownObject(params);
-          if(!$scope.$$phase) {$scope.$apply();}
-        },
-      });
+          /* TODO: Hook/Unhook mouse interactions after creation, not during */
+
+          // Mouse interactions
+          /*moveRoot: function(params) {
+            $scope.moveRoot(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          clickRoot: function(params) {
+            $scope.clickRoot(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          enterRoot: function(params) {
+            $scope.enterRoot(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          leaveRoot: function(params) {
+            $scope.leaveRoot(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          scrollRoot: function(params) {
+            $scope.scrollRoot(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          mouseupRoot: function(params) {
+            $scope.mouseupRoot(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          mousedownRoot: function(params) {
+            $scope.mousedownRoot(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+
+          moveObject: function(params) {
+            $scope.moveObject(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          clickObject: function(params) {
+            $scope.clickObject(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          enterObject: function(params) {
+            $scope.enterObject(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          leaveObject: function(params) {
+            $scope.leaveObject(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          scrollObject: function(params) {
+            $scope.scrollObject(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          mouseupObject: function(params) {
+            $scope.mouseupObject(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },
+          mousedownObject: function(params) {
+            $scope.mousedownObject(params);
+            if(!$scope.$$phase) {$scope.$apply();}
+          },*/
+        });
+      }
 
       // Obsolete
       // $scope.vectic.init();
