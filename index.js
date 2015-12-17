@@ -34,18 +34,15 @@ angular.module('vectic')
       mouseupRoot: '=?',
       mousedownRoot: '=?',
 
-      moveObject: '=?',
-      clickObject: '=?',
-      enterObject: '=?',
-      leaveObject: '=?',
-      scrollObject: '=?',
-      mouseupObject: '=?',
-      mousedownObject: '=?',
+      moveItem: '=?',
+      clickItem: '=?',
+      enterItem: '=?',
+      leaveItem: '=?',
+      scrollItem: '=?',
+      mouseupItem: '=?',
+      mousedownItem: '=?',
 
-      returnObjectsRef: '=?',
-      returnTemplatesRef: '=?',
-      returnPalettesRef: '=?',
-
+      // TODO: Add to new Vectic if not already (editor version included)
       fixSize: '=?',
       width: '=?',
       height: '=?',
@@ -59,102 +56,47 @@ angular.module('vectic')
         vectic.connect($scope.url);
       }
 
+      // Root interaction method handlers
+      $scope.clickInteract = function(sMethod) {
+        return function(params) {
+          if(!(sMethod && $scope[sMethod])) { return console.error('vectic-angular clickInteract: no method supplied'); }
+          $scope[sMethod](params);
+          if(!$scope.$$phase) {$scope.$apply();}
+        };
+      };
+
       if($scope.type == 'edit') {
-        console.log('vectic-angular: Edit Rendering')
         $scope.vectic = new vecticEdit({
           id: $scope.id,
           target: $($element),
         });
       }
       else {
-        console.log('vectic-angular: Rendering')
         // Create vectic controller
         $scope.vectic = new vectic({
           id: $scope.id,
-          // type: $scope.type,
           target: $($element),
-
-          /* TODO: Hook/Unhook mouse interactions after creation, not during */
-
-          // Mouse interactions
-          /*moveRoot: function(params) {
-            $scope.moveRoot(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          clickRoot: function(params) {
-            $scope.clickRoot(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          enterRoot: function(params) {
-            $scope.enterRoot(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          leaveRoot: function(params) {
-            $scope.leaveRoot(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          scrollRoot: function(params) {
-            $scope.scrollRoot(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          mouseupRoot: function(params) {
-            $scope.mouseupRoot(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          mousedownRoot: function(params) {
-            $scope.mousedownRoot(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-
-          moveObject: function(params) {
-            $scope.moveObject(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          clickObject: function(params) {
-            $scope.clickObject(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          enterObject: function(params) {
-            $scope.enterObject(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          leaveObject: function(params) {
-            $scope.leaveObject(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          scrollObject: function(params) {
-            $scope.scrollObject(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          mouseupObject: function(params) {
-            $scope.mouseupObject(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },
-          mousedownObject: function(params) {
-            $scope.mousedownObject(params);
-            if(!$scope.$$phase) {$scope.$apply();}
-          },*/
         });
       }
 
-      // Obsolete
-      // $scope.vectic.init();
+      // Register root click interaction handlers
+      $scope.vectic.onRoot('click',       $scope.clickInteract( 'clickRoot' ));
+      $scope.vectic.onRoot('mouseup',     $scope.clickInteract( 'mouseupRoot' ));
+      $scope.vectic.onRoot('mousedown',   $scope.clickInteract( 'mousedownRoot' ));
+      $scope.vectic.onRoot('mouseenter',  $scope.clickInteract( 'enterRoot' ));
+      $scope.vectic.onRoot('mouseleave',  $scope.clickInteract( 'leaveRoot' ));
+      $scope.vectic.onRoot('mousemove',   $scope.clickInteract( 'moveRoot' ));
+      $scope.vectic.onRoot('scroll',      $scope.clickInteract( 'scrollRoot' ));
 
-      if($scope.returnObjectsRef) {
-        var ref = $scope.vectic.getObjectsRef();
-        if(!ref) {return console.error('unable to get Objects ref');}
-        $scope.returnObjectsRef($firebaseArray(ref));
-      }
-      if($scope.returnTemplatesRef) {
-        var ref = $scope.vectic.getTemplatesRef();
-        if(!ref) {return console.error('unable to get Templates ref');}
-        $scope.returnTemplatesRef($firebaseArray(ref));
-      }
-      if($scope.returnPalettesRef) {
-        var ref = $scope.vectic.getPalettesRef();
-        if(!ref) {return console.error('unable to get Palettes ref');}
-        $scope.returnPalettesRef($firebaseArray(ref));
-      }
+      // Register item click interaction handlers
+      $scope.vectic.onItem('click',       $scope.clickInteract( 'clickItem' ));
+      $scope.vectic.onItem('mouseup',     $scope.clickInteract( 'mouseupItem' ));
+      $scope.vectic.onItem('mousedown',   $scope.clickInteract( 'mousedownItem' ));
+      $scope.vectic.onItem('mouseenter',  $scope.clickInteract( 'enterItem' ));
+      $scope.vectic.onItem('mouseleave',  $scope.clickInteract( 'leaveItem' ));
+      $scope.vectic.onItem('mousemove',   $scope.clickInteract( 'moveItem' ));
+      $scope.vectic.onItem('scroll',      $scope.clickInteract( 'scrollItem' ));
+
 
       $scope.$watch('fixSize', $scope.vectic.fixSize);
       $scope.$watch('width', $scope.vectic.setWidth);
