@@ -5,6 +5,9 @@ try { angular.module('vectic') } catch(err) {
 }
 
 angular.module('vectic')
+.config(function() {
+  if(!FirebaseCon) { vectic.connect(); }
+})
 .factory('vectic', function() {
   var _vectic = null;
 
@@ -52,15 +55,16 @@ angular.module('vectic')
     link: function($scope, $element) {
       // Check for vectic library
       if(!vectic) { return console.error('vectic-angular directive could not find vectic library dependancy'); }
-      if(!FirebaseCon) {
-        vectic.connect($scope.url);
-      }
+      // if(!FirebaseCon) {
+      //   vectic.connect($scope.url);
+      // }
 
       // Root interaction method handlers
       $scope.clickInteract = function(sMethod) {
         return function(params) {
-          if(!(sMethod && $scope[sMethod])) { return console.error('vectic-angular clickInteract: no method supplied'); }
-          $scope[sMethod](params);
+          if(!(sMethod && $scope[sMethod])) { return; }   // No methdo to run, ignore event
+          if(typeof $scope[sMethod] != 'function') { return console.error('vectic-angular: '+sMethod+': is not a function'); }
+          $scope[sMethod](params);      // Trigger supplied event
           if(!$scope.$$phase) {$scope.$apply();}
         };
       };
@@ -97,12 +101,12 @@ angular.module('vectic')
       $scope.vectic.onItem('mousemove',   $scope.clickInteract( 'moveItem' ));
       $scope.vectic.onItem('scroll',      $scope.clickInteract( 'scrollItem' ));
 
-
-      $scope.$watch('fixSize', $scope.vectic.fixSize);
-      $scope.$watch('width', $scope.vectic.setWidth);
-      $scope.$watch('height', $scope.vectic.setHeight);
-      $scope.$watch('zoom', $scope.vectic.setZoom);
-      $scope.$watch('aspectRatio', $scope.vectic.aspectRatio);
+      // Render resizing controls
+      $scope.$watch('fixSize',      $scope.vectic.fixSize);
+      $scope.$watch('width',        $scope.vectic.setWidth);
+      $scope.$watch('height',       $scope.vectic.setHeight);
+      $scope.$watch('zoom',         $scope.vectic.setZoom);
+      $scope.$watch('aspectRatio',  $scope.vectic.aspectRatio);
     },
   };
 }]);
