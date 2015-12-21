@@ -5,9 +5,6 @@ try { angular.module('vectic') } catch(err) {
 }
 
 angular.module('vectic')
-.config(function() {
-  if(!FirebaseCon) { vectic.connect(); }
-})
 .factory('vectic', function() {
   var _vectic = null;
 
@@ -17,6 +14,9 @@ angular.module('vectic')
     else {
       if(!vectic) { return console.error('vectic-angular factory could not find vectic library dependancy'); }
     }
+
+    console.log('do I have a vectic?')
+    console.log(_vectic)
 
     return _vectic;
 })
@@ -51,6 +51,9 @@ angular.module('vectic')
       height: '=?',
       zoom: '=?',
       aspectRatio: '=?',
+
+      // Object to store vectic on for external reference
+      vectics: '=?',
     },
     link: function($scope, $element) {
       // Check for vectic library
@@ -82,6 +85,12 @@ angular.module('vectic')
           target: $($element),
         });
       }
+
+      if($scope.vectics && !$scope.vectics[$scope.id]) {
+        $scope.vectics[$scope.id] = $scope.vectic;
+      }
+
+
 
       // Register root click interaction handlers
       $scope.vectic.onRoot('click',       $scope.clickInteract( 'clickRoot' ));
