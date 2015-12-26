@@ -15,9 +15,6 @@ angular.module('vectic')
       if(!vectic) { return console.error('vectic-angular factory could not find vectic library dependancy'); }
     }
 
-    console.log('do I have a vectic?')
-    console.log(_vectic)
-
     return _vectic;
 })
 .directive('vectic', ['$firebaseArray', 'vectic', function($firebaseArray, vectic) {
