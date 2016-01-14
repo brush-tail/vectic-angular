@@ -19,7 +19,7 @@ angular.module('vectic')
 })
 .directive('vectic', ['$firebaseArray', 'vectic', function($firebaseArray, vectic) {
   return {
-    template: '<div></div>',
+    template: '<div class="svgContainer"></div>',
     restrict: 'E',
     scope: {
       id: '=?',
@@ -72,14 +72,14 @@ angular.module('vectic')
       if($scope.type == 'edit') {
         $scope.vectic = new vecticEdit({
           id: $scope.id,
-          target: $($element),
+          target: $($element).find('div.svgContainer'),
         });
       }
       else {
         // Create vectic controller
         $scope.vectic = new vectic({
           id: $scope.id,
-          target: $($element),
+          target: $($element).find('div.svgContainer'),
         });
       }
 
