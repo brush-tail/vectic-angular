@@ -3,7 +3,7 @@
 ## Setup
 
 ```
-bower install --save https://github.com/brush-tail/vectic-angular.git
+bower install --save https://github.com/brush-tail/vectic-angular.git https://github.com/brush-tail/vectic.git
 ```
 
 ## Implementation

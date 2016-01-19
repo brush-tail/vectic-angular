@@ -52,7 +52,39 @@ angular.module('vectic')
       // Object to store vectic on for external reference
       vectics: '=?',
     },
-    link: function($scope, $element) {
+    link: function($scope, $element, $attr) {
+      console.log('Vectic Angular ')
+      console.log($attr)
+
+      var callType = 'vectic';
+      var edit = false;
+
+      var attEdit = $($attr).attr('edit');
+      if (typeof attEdit !== typeof undefined && attEdit !== false) {
+        edit = true;
+      }
+
+      var attTemplate = $($attr).attr('template');
+      if (typeof attTemplate !== typeof undefined && attTemplate !== false) {
+        callType = 'template';
+      }
+
+/*
+      TODO: Change out
+        vectic()
+        vecticEdit()
+      for
+        vectic()
+        vecticEdit()
+        templateVectic()
+        templateVecticEdit()
+
+      TODO: 
+*/
+
+
+
+
       // Check for vectic library
       if(!vectic) { return console.error('vectic-angular directive could not find vectic library dependancy'); }
       // if(!FirebaseCon) {
